@@ -1,18 +1,16 @@
 package com.yu.game2048;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yu.game2048.Utils.GameView;
-import com.yu.game2048.Utils.ScoreDBHelper;
-import com.yu.game2048.Utils.ScoreOpenHelper;
 
 import org.json.JSONArray;
 
@@ -67,8 +65,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-       // editor.putBoolean("first",true);
-      //  editor.commit();
+        // editor.putBoolean("first",true);
+        //  editor.commit();
         GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setCornerRadius(10);//圆角半径
         gradientDrawable.setColor(getResources().getColor(R.color.gameBackground));
@@ -149,10 +147,15 @@ public class MainActivity extends BaseActivity {
 //        saveData();
     }
 
-    @OnClick(R.id.ad_view)
-    public void onViewClicked() {
-
+    @OnClick({R.id.game_title_view, R.id.ad_view})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.game_title_view:
+                gameTitleView.startAnimation(AnimationUtils.loadAnimation(mainActivity, R.anim.view_anim));
+                break;
+            case R.id.ad_view:
+                Toast.makeText(mainActivity, "广告位招租", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
-
-
 }

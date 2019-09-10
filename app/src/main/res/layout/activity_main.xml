@@ -81,6 +81,7 @@
         tools:layout_constraintVertical_weight="1"></com.yu.game2048.Utils.GameView>
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/ad_view"
         android:layout_width="0dp"
         android:layout_height="165dp"

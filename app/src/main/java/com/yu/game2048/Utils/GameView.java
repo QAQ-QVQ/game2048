@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.GridLayout;
 import android.widget.Toast;
 
@@ -193,7 +194,6 @@ public class GameView extends GridLayout {
                 cards[j][i] = card;
                 // num为随机数
                 card.setNum(0);
-
                 addView(card, cardWidth, cardHeight);
             }
         }
@@ -266,6 +266,7 @@ public class GameView extends GridLayout {
                     if (cards[j][i2].getNum() > 0) {
                         // 如果当前位置上为0,就放在这个位置上去
                         if (cards[j][i].getNum() <= 0) {
+//                            cards[j][i].startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.view_anim));
                             cards[j][i].setNum(cards[j][i2].getNum());
                             // 把原来位置上的数字清除
                             cards[j][i2].setNum(0);
@@ -287,7 +288,10 @@ public class GameView extends GridLayout {
                 }
             }
         }
-        if (CanAdd) endGame();
+        if (CanAdd) {
+            endGame();
+
+        }
     }
 
     private void ToUp() {
